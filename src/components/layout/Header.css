@@ -1,0 +1,17 @@
+/*Background*/
+.header-bg{
+  background-image: url(../../img/header2.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  display: flex;
+  justify-content: center; /*centers items on the line (the x-axis by default)*/
+  align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+.header-text{
+  color: #eee;
+  font-size: 45px;
+  font-family: 'Titillium Web', sans-serif;
+}

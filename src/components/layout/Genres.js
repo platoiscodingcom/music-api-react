@@ -6,7 +6,7 @@ const Genres = () => {
 			<div className="container container-icons animated fadeIn delay-1s">
 				<div className="genre-icon">
 					<i className="fas fa-th" />
-					<span className="genre-title">All</span>
+					<span className="genre-title">Top 10</span>
 				</div>
 				<div className="genre-icon">
 					<i className="fas fa-headphones-alt" />

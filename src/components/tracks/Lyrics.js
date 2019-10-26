@@ -5,10 +5,12 @@ import Spinner from '../layout/Spinner';
 import Moment from 'react-moment';
 import Footer from '../layout/Footer';
 import './lyrics.css';
+import Header from '../layout/Header';
 
 const Lyrics = (props) => {
 	const [ track, setTrack ] = useState({});
 	const [ lyrics, setLyrics ] = useState({});
+	const [ album, setAlbum ] = useState({});
 
 	useEffect(
 		() => {
@@ -29,8 +31,16 @@ const Lyrics = (props) => {
 				.then((res) => {
 					let track = res.data.message.body.track;
 					setTrack({ track });
+
+					return axios.get(
+						`https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/album.get?album_id=${res.data.message.body.track.album_id}&apikey=${process.env.REACT_APP_MM_KEY}`
+					);
 				})
-				.catch((err) => console.log(err));
+				.then((res) => {
+					let album = res.data.message.body.album;
+					setAlbum({ album });
+				})
+				.catch((err) => console.log(`Error: ` + err));
 		},
 		[ props.match.params.id ]
 	);
@@ -45,16 +55,12 @@ const Lyrics = (props) => {
 	} else {
 		return (
 			<React.Fragment>
-        <div className="header-bg">
-          <div className="header-text">
-          {track.track.track_name} by{' '}
-          <span className="text-secondary">{track.track.artist_name}</span>
-          </div>
-        </div>
+				<Header artist={track.track.artist_name} content={track.track.track_name}/>
+
 				<div className="lyrics-section-a">
 					<div className="lyrics-details">
 						<ul>
-							<li><strong>Album_Id</strong>:{track.track.album_id}</li>
+							<li><strong>Album</strong>:{album.album_name}</li>
 							<li><strong>
 								Genre</strong>:{' '}
 								{track.track.primary_genres.music_genre_list.length === 0 ? (
@@ -68,6 +74,16 @@ const Lyrics = (props) => {
               <strong>Release Date</strong>: <Moment format="MM/DD/YYYY">{track.track.first_release_date}</Moment>
 							</li>
 						</ul>
+						<div>
+            <Link to="/">
+							<button className="back-button">
+								<i className="fas fa-arrow-left"></i> Back
+							</button>
+						</Link>
+						<Link to={`/album/${track.track.album_id}`} className="text">
+            		Album
+          	</Link>
+          </div>
 					</div>
 					<div>
 						<h3>
@@ -75,11 +91,6 @@ const Lyrics = (props) => {
 							<span className="text-secondary">{track.track.artist_name}</span>
 						</h3>
 						<p>{lyrics.lyrics.lyrics_body}</p>
-          </div>
-          <div>
-            <Link to="/">
-              <button className="back-button">Back</button>
-            </Link>
           </div>
         </div>
         
