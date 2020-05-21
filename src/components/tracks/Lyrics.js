@@ -47,7 +47,7 @@ const Lyrics = props => {
   } else {
     return (
       <React.Fragment>
-        <Header style={{color: 'white', fontSize:"2rem"}}
+        <Header 
           artist={track.track.artist_name}
           content={track.track.track_name}
         />
