@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const Genres = () => {
   const [state, setState] = useContext(Context)
-	const [genreId, setGenreId] = useState('')
+  const [genreId, setGenreId] = useState('')
 
   useEffect(() => {
     axios
@@ -21,9 +21,16 @@ const Genres = () => {
   return (
     <section className='section-a section-gray'>
       <div className='container container-icons animated fadeIn delay-1s'>
-        <div className='genre-icon'>
+        <div
+          className='genre-icon'
+          onClick={e => {
+            e.preventDefault()
+            setGenreId(53)
+					}}
+					style={{ cursor: 'pointer' }}
+        >
           <i className='fas fa-th' />
-          <span className='genre-title'>Top 10</span>
+          <span className='genre-title'>Instrumental</span>
         </div>
         <div
           onClick={e => {
