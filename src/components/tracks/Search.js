@@ -3,14 +3,12 @@ import axios from "axios";
 import { Context } from "../../context";
 
 const Search = () => {
-  //Hooks: use state and other React features without writing a class
   const [state, setState] = useContext(Context);
   const [userInput, setUserInput] = useState("");
   const [trackTitle, setTrackTitle] = useState("");
 
-  //Effect Hook: perform side effects in function components; runs after every render
+
   useEffect( () => {
-    //Axios:promise-based -> async and await
     axios
       .get(
         `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${
@@ -19,6 +17,7 @@ const Search = () => {
       ).then(res => {
           let track_list = res.data.message.body.track_list;
           setState({ track_list: track_list });
+          setUserInput("")
         })
         .catch(err => console.log(err));
   }, [trackTitle]);  //only fetch if trackTitle changes
@@ -26,6 +25,11 @@ const Search = () => {
   const findTrack = e => {
     e.preventDefault();
     setTrackTitle(userInput);
+    window.scrollTo({
+      top: 350,
+      left: 0,
+      behavior: 'smooth'
+    });
   };
 
   const onChange = e => {

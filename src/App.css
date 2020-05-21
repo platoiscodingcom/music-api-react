@@ -164,10 +164,19 @@ ul{
 .card-body{
   padding: 5px 10px 10px 10px;
   text-align: center;
+  white-space: nowrap;
+    overflow: hidden;
+    max-width: 210px;
+    border-left:1em solid transparent;
+    border-right:1em solid transparent;
+    text-overflow: ellipsis;
+    margin-left: 1.7rem;
 }
+
 .music-title{
   font-weight: 400;
   font-size: 18px;
+  
 }
 .music-artist, .music-info{
   font-size: 14px;
@@ -309,6 +318,10 @@ ul{
   .section-a {
     margin: 1rem 6rem;
   }
+
+  .card-body{
+    margin-left: 1.5rem;
+  }
 }
 
 /**************************************/
@@ -338,6 +351,7 @@ ul{
   .card {
     margin: 0.5rem;
   }
+
 
   .card img{
     width: 215px;
@@ -407,6 +421,11 @@ ul{
 
   .card img{
     width: 200px;
+  }
+
+  .card-body{
+    max-width: 210px;
+    margin: 1rem;
   }
 
   .music-title{

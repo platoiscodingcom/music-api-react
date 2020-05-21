@@ -19,11 +19,9 @@ const Track = (props) => {
 				</div>
 			</div>
 			<div className="card-body">
-				<div className="card-body">
 					<p className="music-title">{shortTitle}</p>
 					<p className="music-artist">{shortArist}</p>
 					<p className="music-info">{shortAlbum}</p>
-				</div>
 			</div>
 		</div>
 	);
